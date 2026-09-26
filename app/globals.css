@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-base-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base text-ink font-body antialiased;
+    background-image: theme("backgroundImage.field-glow");
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink;
+  }
+
+  ::selection {
+    background-color: rgba(99, 102, 241, 0.35);
+    color: #f4f4f7;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.8);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #08090d;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #232733;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2d3242;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(17, 19, 25, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mono-tag {
+    font-family: var(--font-mono), monospace;
+    letter-spacing: 0.01em;
+  }
+
+  /* Orbit rings in the hero visualizer.
+     `transform-box: fill-box` makes each ring rotate around its own centre
+     instead of the SVG viewport origin, which is what lets three rings of
+     different sizes share one spin keyframe. */
+  .orbit-slow,
+  .orbit-reverse,
+  .orbit-fast {
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .orbit-slow {
+    animation: hv-orbit 48s linear infinite;
+  }
+
+  .orbit-reverse {
+    animation: hv-orbit 64s linear infinite reverse;
+  }
+
+  .orbit-fast {
+    animation: hv-orbit 22s linear infinite;
+  }
+}
+
+@keyframes hv-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
