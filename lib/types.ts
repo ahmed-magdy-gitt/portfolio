@@ -75,7 +75,13 @@ export interface TimelineItem {
   orgUrl?: string;
   /** Optional certificate file that opens in the experience lightbox. */
   certificateUrl?: string;
-  type: "degree" | "training";
+  type: "degree" | "training" | "internship";
+  /** Optional partner org shown inline next to `org`, e.g. a training
+   *  program's implementation partner. */
+  partner?: {
+    name: string;
+    url?: string;
+  };
   description: string;
 }
 
