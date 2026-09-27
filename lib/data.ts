@@ -16,8 +16,7 @@ export const profile: Profile = {
     "https://wa.me/201143196324?text=Hi%20Ahmed,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect.",
   github: "https://github.com/ahmed-magdy-gitt",
   linkedin: "https://www.linkedin.com/in/ahmed-magdy-798370344",
-  resume:
-    "https://drive.google.com/file/d/1YSOBjlt2TJOuNMdh5UaDwIXMECAthm8x/view?usp=drivesdk",
+  resume: "/CV.pdf",
 };
 
 export const stats: Stat[] = [
@@ -522,49 +521,75 @@ export const projects: Project[] = [
 export const timeline: TimelineItem[] = [
   {
     id: "helwan",
-    title: "B.Sc. in Information Systems",
-    org: "Faculty of Computers and Artificial Intelligence, Helwan University",
-    orgUrl: "https://fci.capu.edu.eg/index.php/en/",
+    title: "Helwan University — B.Sc. in Information Systems",
+    org: "Faculty of Computers and Artificial Intelligence (FCAI)",
+    orgUrl: "https://www.linkedin.com/school/helwan-university/",
     type: "degree",
     description:
-      "Foundation in systems design, databases and software engineering principles.",
+      "Foundation in systems design, databases, and software engineering principles.",
   },
   {
     id: "depi-flutter",
-    title: "Digital Egypt Pioneers Initiative — Flutter Track",
+    title: "Digital Egypt Pioneers Initiative (DEPI) — Flutter Track",
     org: "DEPI",
-    orgUrl: "https://depi.gov.eg/",
+    orgUrl: "https://www.linkedin.com/company/depiegypt/",
     certificateUrl: "/certificates/depi.jpg",
     type: "training",
     description:
-      "Advanced cross-platform application design, state management and clean architecture.",
-  },
-  {
-    id: "nti",
-    title: "MEAN Stack Program",
-    org: "National Telecommunication Institute (NTI)",
-    orgUrl: "https://www.nti.sci.eg/",
-    certificateUrl: "/certificates/nti.jpg",
-    type: "training",
-    description:
-      "Full-stack web engineering across MongoDB, Express, Angular and Node.js — graduated with 95% excellence.",
+      "Advanced cross-platform application design, state management, and clean architecture.",
+    partner: {
+      name: "Global Knowledge",
+      url: "https://www.linkedin.com/company/global-knowledge/",
+    },
   },
   {
     id: "iti",
-    title: "Flutter Program",
-    org: "Information Technology Institute (ITI)",
-    orgUrl: "https://www.linkedin.com/school/information-technology-institute-iti-/",
+    title: "Information Technology Institute (ITI) — Flutter Program",
+    org: "ITI",
+    orgUrl: "https://www.linkedin.com/school/information-technology-institute-iti/",
     type: "training",
     description: "Specialized track in cross-platform mobile application development.",
   },
   {
     id: "depi-android",
-    title: "Digital Egypt Pioneers Initiative — Android Track",
+    title: "Digital Egypt Pioneers Initiative (DEPI) — Android Track",
     org: "DEPI",
-    orgUrl: "https://depi.gov.eg/",
+    orgUrl: "https://www.linkedin.com/company/depiegypt/",
     certificateUrl: "/certificates/depi.jpg",
     type: "training",
     description:
-      "Native Android engineering with Kotlin, Jetpack Compose and modern architecture components.",
+      "Native Android engineering with Kotlin, Jetpack Compose, and modern architecture components.",
+    partner: {
+      name: "YAT Learning Solutions",
+      url: "https://www.linkedin.com/company/yat-learning/",
+    },
+  },
+  {
+    id: "nti",
+    title: "National Telecommunication Institute (NTI) — MEAN Stack Track",
+    org: "NTI",
+    orgUrl: "https://www.linkedin.com/school/national-telecommunication-institute-nti/",
+    certificateUrl: "/certificates/nti.jpg",
+    type: "training",
+    description:
+      "Full-stack web engineering across MongoDB, Express, Angular, and Node.js — graduated with 95% excellence.",
+  },
+  {
+    id: "codealpha-internship",
+    title: "CodeAlpha — Flutter Development Internship",
+    org: "CodeAlpha",
+    orgUrl: "https://www.linkedin.com/company/codealpha",
+    type: "internship",
+    description:
+      "Production-grade Flutter application development, state management implementation, and API integration.",
+  },
+  {
+    id: "decode-labs-internship",
+    title: "Decode Labs — Full-Stack Software Engineering Internship",
+    org: "Decode Labs",
+    orgUrl: "https://www.linkedin.com/company/decodelabs_official/",
+    type: "internship",
+    description:
+      "Full-stack software engineering, RESTful API architecture, and modern web framework implementation.",
   },
 ];

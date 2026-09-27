@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { GraduationCap, Award, X } from "lucide-react";
+import { GraduationCap, Award, Briefcase, ArrowUpRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { timeline } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
@@ -23,6 +23,29 @@ const item = {
     transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
   },
 };
+
+/** Org / partner badge used in Row 2. Renders as a link with a sliding
+ * external-link icon when a URL is available, otherwise as plain text. */
+function TimelineLink({ href, label }: { href?: string; label: string }) {
+  if (!href) {
+    return <span className="text-sm font-medium text-ink-muted">{label}</span>;
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/link inline-flex items-center gap-1 text-sm font-medium text-cyan-400 transition-colors duration-200 ease-in-out hover:text-cyan-300"
+    >
+      {label}
+      <ArrowUpRight
+        size={12}
+        className="transition-transform duration-200 ease-in-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+      />
+    </a>
+  );
+}
 
 export default function Experience() {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
@@ -62,7 +85,12 @@ export default function Experience() {
           className="space-y-10"
         >
           {timeline.map((entry) => {
-            const Icon = entry.type === "degree" ? GraduationCap : Award;
+            const Icon =
+              entry.type === "degree"
+                ? GraduationCap
+                : entry.type === "internship"
+                  ? Briefcase
+                  : Award;
             const hasCertificate = Boolean(entry.certificateUrl);
 
             return (
@@ -79,31 +107,30 @@ export default function Experience() {
                   disabled={!hasCertificate}
                   aria-label={hasCertificate ? `Open certificate for ${entry.org}` : undefined}
                   title={hasCertificate ? `Open certificate for ${entry.org}` : undefined}
-                  className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-base-border bg-base-surface text-glow-cyan transition-all duration-300 ${
-                    hasCertificate
-                      ? "cursor-pointer hover:border-glow-cyan/70 hover:shadow-glow-cyan group-hover:border-glow-cyan/70 group-hover:shadow-glow-cyan"
-                      : "cursor-default opacity-80"
+                  className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-base-border bg-base-surface text-glow-cyan transition-all duration-300 ease-in-out group-hover:border-glow-cyan/70 group-hover:bg-glow-cyan/20 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.5)] ${
+                    hasCertificate ? "cursor-pointer" : "cursor-default"
                   }`}
                 >
                   <Icon size={17} />
                 </button>
 
                 <div className="pt-1.5">
-                  <h3 className="font-display text-base font-semibold text-ink">
+                  <h3 className="font-display text-base font-semibold leading-snug tracking-tight text-ink sm:text-lg">
                     {entry.title}
                   </h3>
-                  {entry.orgUrl ? (
-                    <a
-                      href={entry.orgUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-0.5 inline-block text-sm text-ink-muted underline decoration-glow-cyan/0 underline-offset-4 transition-colors duration-300 hover:text-glow-cyan hover:decoration-glow-cyan/70"
-                    >
-                      {entry.org}
-                    </a>
-                  ) : (
-                    <p className="mt-0.5 text-sm text-ink-muted">{entry.org}</p>
-                  )}
+
+                  {/* Row 2: org badge, and partner badge inline right next to
+                      it when present — separated by a middle dot. */}
+                  <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                    <TimelineLink href={entry.orgUrl} label={entry.org} />
+                    {entry.partner && (
+                      <>
+                        <span className="text-xs text-ink-faint">•</span>
+                        <TimelineLink href={entry.partner.url} label={entry.partner.name} />
+                      </>
+                    )}
+                  </div>
+
                   <p className="mt-2 max-w-lg text-sm leading-relaxed text-ink-faint">
                     {entry.description}
                   </p>
